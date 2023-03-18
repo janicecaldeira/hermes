@@ -1,23 +1,24 @@
-import { BrandEntity } from '@/common/database/entities/brand.entity';
 import {
-  ConflictException,
   HttpException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
-import { CreateBrandDto } from '../dto/create-brand.dto';
-import { CreateBrandSerializer } from '../serializers/create-brand.serializer';
-import { UpdateBrandSerializer } from '../serializers/update-brand.serializer';
-import { UpdateBrandDto } from './../dto/update-brand.dto';
+
+import { SellerEntity } from '@/common/database/entities/seller.entity';
+import { CreateSellerDto } from '../dto/create-seller.dto';
+import { CreateSellerSerializer } from '../serializers/create-seller.serializer';
+import { UpdateSellerSerializer } from '../serializers/update-seller.serializer';
+import { UpdateSellerDto } from './../dto/update-seller.dto';
 
 @Injectable()
-export class BrandRepository {
+export class SellerRepository {
   constructor(
-    @InjectRepository(BrandEntity)
-    private repository: Repository<BrandEntity>,
+    @InjectRepository(SellerEntity)
+    private repository: Repository<SellerEntity>,
   ) {}
 
   async findAll() {
@@ -35,22 +36,18 @@ export class BrandRepository {
   }
 
   async create(
-    data: CreateBrandDto,
-  ): Promise<CreateBrandSerializer | undefined> {
+    data: CreateSellerDto,
+  ): Promise<CreateSellerSerializer | undefined> {
     try {
-      if (await this.nameExists(data.name)) {
-        throw new ConflictException('Name already exists');
-      }
+      const newSeller = this.repository.create(data);
 
-      const newBrand = this.repository.create(data);
+      await this.repository.save(newSeller);
 
-      await this.repository.save(newBrand);
-
-      const brand = await this.repository.findOneOrFail({
-        where: { id: newBrand.id },
+      const seller = await this.repository.findOneOrFail({
+        where: { id: newSeller.id },
       });
 
-      return brand;
+      return seller;
     } catch (error) {
       this.throwValidError(error);
     }
@@ -58,12 +55,12 @@ export class BrandRepository {
 
   async update(
     id: number,
-    data: UpdateBrandDto,
-  ): Promise<UpdateBrandSerializer | undefined> {
+    data: UpdateSellerDto,
+  ): Promise<UpdateSellerSerializer | undefined> {
     if (!(await this.exist(id))) {
       throw new NotFoundException({
-        message: 'Brand not found',
-        status: 'BRAND_NOT_FOUND',
+        message: 'Seller not found',
+        status: 'SELLER_NOT_FOUND',
       });
     }
 
@@ -89,15 +86,6 @@ export class BrandRepository {
     });
 
     return { sucess: true };
-  }
-
-  async nameExists(name: string): Promise<boolean> {
-    return (
-      (await this.repository
-        .createQueryBuilder('brand')
-        .where('brand.name = :name', { name })
-        .getCount()) === 1
-    );
   }
 
   async exist(id: number) {

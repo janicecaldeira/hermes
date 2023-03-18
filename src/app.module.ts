@@ -1,10 +1,30 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { LoggerModule } from 'nestjs-pino';
+
+import dbConfig from './config/db.config';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mariadb',
+      ...dbConfig,
+    }),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        transport: {
+          target: 'pino-pretty',
+          options: {
+            singleLine: true,
+            colorize: true,
+            levelFirst: true,
+          },
+        },
+      },
+    }),
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

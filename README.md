@@ -115,7 +115,18 @@ npm run test:watch
 or
 
 ```bash
-$ npm run test:cov
+npm run test:cov
+```
+
+## Documentation with Compodoc
+
+First run
+
+```bash
+npm run docs:build
+```
+
+Now open your browser and navigate to <http://localhost:8080/>
 
 ## License
 

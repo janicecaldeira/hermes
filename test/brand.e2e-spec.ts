@@ -12,7 +12,7 @@ describe('BrandController (e2e)', () => {
   let app: any;
   const url = '/brands';
   let testHelper: TestHelper;
-  
+
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 

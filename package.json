@@ -16,6 +16,7 @@
     "test": "jest",
     "test:prepare": "cross-env-shell NODE_ENV=test \"npm run typeorm -- schema:drop -d ./src/config/typeorm.config.ts && npm run typeorm:run-migrations\"",
     "test:watch": "jest --watch --color",
+    "test:watch-all": "jest --watchAll --color",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",

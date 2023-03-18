@@ -1,15 +1,9 @@
-import { ConfigService } from '@nestjs/config';
-import { config } from 'dotenv-flow';
+import { DataSource } from 'typeorm';
 
-config({ silent: true });
-const configService = new ConfigService();
+import dbConfig from './db.config';
 
-export default {
-  host: configService.get('DB_HOST'),
-  port: configService.get('DB_PORT'),
-  username: configService.get('DB_USER'),
-  password: configService.get('DB_PASSWORD'),
-  database: configService.get('DB_NAME'),
-  entities: [],
-  synchronize: configService.get('NODE_ENV') === 'development',
-};
+export default new DataSource({
+  type: 'mariadb',
+  ...dbConfig,
+  migrations: ['./migrations/*.ts'],
+});

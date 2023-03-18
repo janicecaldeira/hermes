@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 import { createMock } from '@golevelup/ts-jest';
 
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { CreateSellerDto } from './dto/create-seller.dto';
 import { UpdateSellerDto } from './dto/update-seller.dto';
 import { SellerRepository } from './repository/seller.repository';

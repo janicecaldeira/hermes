@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateBrandDto } from './dto/update-brand.dto';
 
 import { BrandEntity } from '@/common/database/entities/brand.entity';
 import { CreateBrandDto } from './dto/create-brand.dto';
+import { UpdateBrandDto } from './dto/update-brand.dto';
 import { BrandRepository } from './repository/brand.repository';
 import { CreateBrandSerializer } from './serializers/create-brand.serializer';
 import { UpdateBrandSerializer } from './serializers/update-brand.serializer';

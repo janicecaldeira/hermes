@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { Factory } from 'rosie';
+
 import { SellerEntity } from '../common/database/entities/seller.entity';
 import { TestHelper } from '../helpers/test.helper';
 

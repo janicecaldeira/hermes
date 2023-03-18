@@ -1,8 +1,9 @@
+import { HttpException, InternalServerErrorException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { Factory } from 'rosie';
 
 import { SellerEntity } from '@/common/database/entities/seller.entity';
-import { HttpException, InternalServerErrorException } from '@nestjs/common';
 import { CreateSellerDto } from './dto/create-seller.dto';
 import { UpdateSellerDto } from './dto/update-seller.dto';
 import { SellersController } from './sellers.controller';

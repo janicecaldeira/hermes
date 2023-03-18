@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { LoggerModule } from 'nestjs-pino';
+
 import { BrandsModule } from './brands/brands.module';
-import { SellersModule } from './sellers/sellers.module';
 import { ProductsModule } from './products/products.module';
+import { SellersModule } from './sellers/sellers.module';
 
 import dbConfig from './config/db.config';
 

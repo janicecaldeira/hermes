@@ -7,7 +7,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
+
 import { CreateBrandDto } from '../dto/create-brand.dto';
 import { CreateBrandSerializer } from '../serializers/create-brand.serializer';
 import { UpdateBrandSerializer } from '../serializers/update-brand.serializer';

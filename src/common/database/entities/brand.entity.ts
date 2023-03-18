@@ -5,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
+
 import { BasicEntity } from './basic.entity';
 import { ProductEntity } from './product.entity';
 

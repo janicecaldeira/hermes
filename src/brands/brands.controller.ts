@@ -7,12 +7,12 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreateBrandDto } from './dto/create-brand.dto';
-import { UpdateBrandDto } from './dto/update-brand.dto';
-import { CreateBrandSerializer } from './serializers/create-brand.serializer';
 
 import { BrandEntity } from '@/common/database/entities/brand.entity';
 import { BrandsService } from './brands.service';
+import { CreateBrandDto } from './dto/create-brand.dto';
+import { UpdateBrandDto } from './dto/update-brand.dto';
+import { CreateBrandSerializer } from './serializers/create-brand.serializer';
 import { UpdateBrandSerializer } from './serializers/update-brand.serializer';
 
 @Controller('brands')

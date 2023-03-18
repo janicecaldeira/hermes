@@ -15,13 +15,13 @@ describe('ProductsService', () => {
 
   const createData: CreateProductDto = {
     name: 'Test',
-    price: 10.00,
+    price: 10.0,
     brandId: 1,
     sellerId: 1,
   };
 
   const updateData: UpdateProductDto = {
-    price: 20.00,
+    price: 20.0,
   };
 
   beforeEach(async () => {

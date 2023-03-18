@@ -19,9 +19,9 @@ Factory.define('product') // eslint-disable-line prettier/prettier
     seller: null,
     sellerId: null,
   })
-  .after(async (product, options) => {   
+  .after(async (product, options) => {
     if (!product.name) product.name = faker.commerce.productName();
-    if (!product.slug) product.slug = slugify(product.name)
+    if (!product.slug) product.slug = slugify(product.name);
     if (!product.price) product.price = faker.commerce.price();
 
     if (options.deleted) {
@@ -40,7 +40,7 @@ Factory.define('product') // eslint-disable-line prettier/prettier
     }
 
     if (!product.brand) {
-      product.brand = product.brandId; 
+      product.brand = product.brandId;
     }
 
     if (!product.sellerId && !options.save) {
@@ -50,7 +50,7 @@ Factory.define('product') // eslint-disable-line prettier/prettier
     }
 
     if (!product.seller) {
-      product.seller = product.sellerId 
+      product.seller = product.sellerId;
     }
 
     if (options.save) {

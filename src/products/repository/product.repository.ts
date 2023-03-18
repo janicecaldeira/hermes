@@ -79,7 +79,7 @@ export class ProductRepository {
       if (data.name) {
         if (await this.nameExists(data.name)) {
           throw new ConflictException('Name already exists');
-        }  
+        }
       }
 
       await this.repository.save(Object.assign(product, data));

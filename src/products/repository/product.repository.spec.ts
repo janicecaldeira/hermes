@@ -1,14 +1,12 @@
-import { TestHelper } from '@/helpers/test.helper';
 import { ConflictException, NotFoundException } from '@nestjs/common';
 
 import { Factory } from 'rosie';
 import { Repository } from 'typeorm';
 
-import { BrandRepository } from '@/brands/repository/brand.repository';
 import { BrandEntity } from '@/common/database/entities/brand.entity';
 import { ProductEntity } from '@/common/database/entities/product.entity';
 import { SellerEntity } from '@/common/database/entities/seller.entity';
-import { SellerRepository } from '@/sellers/repository/seller.repository';
+import { TestHelper } from '@/helpers/test.helper';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { ProductRepository } from './product.repository';
 
@@ -16,11 +14,7 @@ describe('ProductRepository', () => {
   let testHelper: TestHelper;
 
   let repository: ProductRepository;
-  let brandRepository: BrandRepository;
-  let sellerRepository: SellerRepository;
   let originalRepository: Repository<ProductEntity>;
-  let originalBrandRepository: Repository<BrandEntity>;
-  let originalSellerRepository: Repository<SellerEntity>;
   let brand: BrandEntity;
   let brandId: number;
   let seller: SellerEntity;
@@ -38,11 +32,7 @@ describe('ProductRepository', () => {
 
   beforeEach(() => {
     originalRepository = testHelper.getRepository(ProductEntity);
-    originalBrandRepository = testHelper.getRepository(BrandEntity);
-    originalSellerRepository = testHelper.getRepository(SellerEntity);
     repository = new ProductRepository(originalRepository);
-    brandRepository = new BrandRepository(originalBrandRepository);
-    sellerRepository = new SellerRepository(originalSellerRepository);
 
     return testHelper.cleanDatabase().then(async () => {
       brand = await Factory.build('brand', {}, { save: true });

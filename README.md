@@ -92,9 +92,7 @@ This also runs the app in development mode.
 
 ### Local tests with test database in Docker
 
-There is a test database in docker compose. It will load by default. You'll
-need to prepare the database because the it is not persisted. All DB
-configuration will be loaded from .env.test.
+There is a test database in docker compose. All DB configuration will be loaded from .env.test.
 
 Just run:
 

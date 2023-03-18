@@ -3,7 +3,7 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Unique
+  Unique,
 } from 'typeorm';
 
 import { BasicEntity } from './basic.entity';
@@ -55,7 +55,7 @@ export class ProductEntity extends BasicEntity {
   brand: BrandEntity;
 
   @Column({
-    type: 'int'
+    type: 'int',
   })
   sellerId: number;
 

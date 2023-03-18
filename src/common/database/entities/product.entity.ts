@@ -1,4 +1,7 @@
+import slugify from 'slugify';
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   ManyToOne,
@@ -64,4 +67,10 @@ export class ProductEntity extends BasicEntity {
     eager: true,
   })
   seller: SellerEntity;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  generateSlug() {
+    this.slug = slugify(this.name, { lower: true, strict: true });
+  }
 }

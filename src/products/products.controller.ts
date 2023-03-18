@@ -6,10 +6,12 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 
 import { ProductEntity } from '@/common/database/entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
+import { FindOptions } from './dto/find-options.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductsService } from './products.service';
 import { CreateProductSerializer } from './serializers/create-product.serializer';
@@ -20,8 +22,8 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Get()
-  findAll(): Promise<ProductEntity[]> {
-    return this.productsService.findAll();
+  findAll(@Query() query: FindOptions): Promise<ProductEntity[]> {
+    return this.productsService.findAll(query);
   }
 
   @Get(':id')

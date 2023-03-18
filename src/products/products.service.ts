@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { ProductEntity } from '@/common/database/entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
+import { FindOptions } from './dto/find-options.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductRepository } from './repository/product.repository';
 import { CreateProductSerializer } from './serializers/create-product.serializer';
@@ -11,8 +12,8 @@ import { UpdateProductSerializer } from './serializers/update-product.serializer
 export class ProductsService {
   constructor(private readonly productRepository: ProductRepository) {}
 
-  findAll(): Promise<ProductEntity[]> {
-    return this.productRepository.findAll();
+  findAll(query: FindOptions): Promise<ProductEntity[]> {
+    return this.productRepository.findAll(query);
   }
 
   findOne(id: number): Promise<ProductEntity | undefined> {

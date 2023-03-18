@@ -5,6 +5,7 @@ import { Factory } from 'rosie';
 
 import { ProductEntity } from '@/common/database/entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
+import { FindOptions } from './dto/find-options.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
@@ -29,6 +30,8 @@ describe('ProductsController', () => {
   const updateProductDto: UpdateProductDto = {
     price: 20.0,
   };
+
+  const findOptions: FindOptions = {};
 
   beforeAll(async () => {
     productListMock = await Promise.all(
@@ -66,7 +69,7 @@ describe('ProductsController', () => {
 
   describe('findAll', () => {
     it('should return an array of products', async () => {
-      const response = await controller.findAll();
+      const response = await controller.findAll(findOptions);
       expect(response).toEqual(productListMock);
     });
   });

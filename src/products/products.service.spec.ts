@@ -4,6 +4,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { createMock } from '@golevelup/ts-jest';
 
 import { CreateProductDto } from './dto/create-product.dto';
+import { FindOptions } from './dto/find-options.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductsService } from './products.service';
 import { ProductRepository } from './repository/product.repository';
@@ -23,6 +24,8 @@ describe('ProductsService', () => {
   const updateData: UpdateProductDto = {
     price: 20.0,
   };
+
+  const findOptions: FindOptions = {};
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -52,7 +55,7 @@ describe('ProductsService', () => {
 
   describe('findAll', () => {
     it('should be defined', async () => {
-      const response = service.findAll();
+      const response = service.findAll(findOptions);
       expect(response).toBeDefined();
     });
   });

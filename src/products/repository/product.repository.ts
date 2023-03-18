@@ -6,8 +6,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { FindOptions } from './../dto/find-options.dto';
 
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 
 import { ProductEntity } from '@/common/database/entities/product.entity';
 import { CreateProductDto } from '@/products/dto/create-product.dto';
@@ -22,10 +23,35 @@ export class ProductRepository {
     private repository: Repository<ProductEntity>,
   ) {}
 
-  async findAll() {
-    return await this.repository.find({
-      loadRelationIds: true,
-    });
+  async findAll(query: FindOptions) {
+    const { name, brand, seller, priceStart, priceEnd } = query;
+
+    const qb = this.repository
+      .createQueryBuilder('product')
+      .leftJoin('product.brand', 'brand')
+      .leftJoin('product.seller', 'seller')
+      .loadAllRelationIds();
+
+    if (priceStart && priceEnd) {
+      qb.andWhere('product.price BETWEEN :priceStart AND :priceEnd', {
+        priceStart: priceStart,
+        priceEnd: priceEnd,
+      });
+    }
+
+    if (name) {
+      qb.andWhere({ name: ILike(`%${name}%`) });
+    }
+
+    if (brand) {
+      qb.andWhere('brand.name LIKE :brand', { brand: `%${brand}%` });
+    }
+
+    if (seller) {
+      qb.andWhere('seller.name LIKE :seller', { seller: `%${seller}%` });
+    }
+
+    return await qb.getMany();
   }
 
   async findOne(id: number) {

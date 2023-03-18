@@ -1,4 +1,5 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
+import { FindOptions } from './../dto/find-options.dto';
 
 import { Factory } from 'rosie';
 import { Repository } from 'typeorm';
@@ -19,6 +20,8 @@ describe('ProductRepository', () => {
   let brandId: number;
   let seller: SellerEntity;
   let sellerId: number;
+
+  const findOptions: FindOptions = {};
 
   beforeAll(() => {
     testHelper = TestHelper.getInstance();
@@ -53,7 +56,7 @@ describe('ProductRepository', () => {
 
   describe('.findAll', () => {
     it('returns empty when there is no records', async () => {
-      expect(await repository.findAll()).toBeEmpty();
+      expect(await repository.findAll(findOptions)).toBeEmpty();
     });
 
     it('returns all products', async () => {
@@ -61,7 +64,7 @@ describe('ProductRepository', () => {
         Factory.buildList('product', 3, { brandId, sellerId }, { save: true }),
       );
 
-      const results = await repository.findAll();
+      const results = await repository.findAll(findOptions);
       expect(results).toIncludeAllMembers(products);
     });
   });

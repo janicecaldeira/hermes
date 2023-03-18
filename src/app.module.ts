@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { LoggerModule } from 'nestjs-pino';
+import { BrandsModule } from './brands/brands.module';
 
 import dbConfig from './config/db.config';
 
@@ -23,6 +24,7 @@ import dbConfig from './config/db.config';
         },
       },
     }),
+    BrandsModule,
   ],
   controllers: [],
   providers: [],

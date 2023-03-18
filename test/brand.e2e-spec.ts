@@ -5,7 +5,6 @@ import * as request from 'supertest';
 
 import { CreateBrandDto } from '@/brands/dto/create-brand.dto';
 import { UpdateBrandDto } from '@/brands/dto/update-brand.dto';
-import { BrandRepository } from '@/brands/repository/brand.repository';
 import { AppModule } from '../src/app.module';
 import { TestHelper } from '../src/helpers/test.helper';
 
@@ -13,8 +12,7 @@ describe('BrandController (e2e)', () => {
   let app: any;
   const url = '/brands';
   let testHelper: TestHelper;
-  let brandRepository: BrandRepository;
-
+  
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 

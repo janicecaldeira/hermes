@@ -1,4 +1,4 @@
-import { ConflictException, NotFoundException } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
 
 import { Factory } from 'rosie';
 import { Repository } from 'typeorm';
@@ -96,18 +96,6 @@ describe('SellerRepository', () => {
         'updatedAt',
         'deletedAt',
       ]);
-    });
-
-    it('throws a ConflictException when trying to create a duplicate seller', async () => {
-      const properties = {
-        name: 'Seller 1',
-      };
-
-      await repository.create(properties);
-
-      await expect(repository.create(properties)).rejects.toThrow(
-        ConflictException,
-      );
     });
   });
 

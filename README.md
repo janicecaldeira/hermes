@@ -4,7 +4,7 @@ This name was chosen in reference to the Greek god Hermes, the god of commerce, 
 
 ## Before starts
 
-Download and install [Node 18.14.0 LTS](https://nodejs.org/en/download/)
+Download and install [Node LTS](https://nodejs.org/en/download/)
 
 ## Installation
 

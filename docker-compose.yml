@@ -1,0 +1,64 @@
+version: '3'
+name: hermes
+services:
+  hermes-db-dev:
+    container_name: hermes-db-dev
+    image: mariadb:10.6
+    environment:
+      - MARIADB_DATABASE=hermes_dev
+      - MARIADB_USER=hermes_dev
+      - MARIADB_PASSWORD=hermes_dev
+      - MARIADB_ROOT_PASSWORD=hermes_dev
+    ports:
+      - '13306:3306'
+    networks:
+      - backend
+    volumes:
+      - hermes-db-dev-volume:/var/lib/mysql
+
+  hermes-backend-test:
+    container_name: hermes-backend-test
+    image: node:lts-hydrogen
+    command: sh -c "npm install && npm run test:prepare && npm run test:watch-all"
+    environment:
+      - NODE_ENV=test
+      - PORT=3000
+      - DB_TYPE=mariadb
+      - DB_HOST=hermes-db-test
+      - DB_PORT=3306
+      - DB_NAME=hermes_test
+      - DB_USER=hermes_test
+      - DB_PASSWORD=hermes_test
+    working_dir: /app
+    volumes:
+      - .:/app:cached
+    depends_on:
+      - hermes-db-test
+    profiles:
+      - test
+    networks:
+      - test
+  hermes-db-test:
+    container_name: hermes-db-test
+    image: mariadb:10.6
+    environment:
+      - MARIADB_DATABASE=hermes_test
+      - MARIADB_USER=hermes_test
+      - MARIADB_PASSWORD=hermes_test
+      - MARIADB_ROOT_PASSWORD=hermes_test
+    ports:
+      - '23306:3306'
+    networks:
+      - test
+    volumes:
+      - type: tmpfs
+        target: /var/lib/mysql
+
+networks:
+  backend:
+    driver: bridge
+  test:
+    driver: bridge
+
+volumes:
+  hermes-db-dev-volume:

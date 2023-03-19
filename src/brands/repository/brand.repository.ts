@@ -32,7 +32,7 @@ export class BrandRepository {
         where: { id },
       });
     } catch (error) {
-      throw new NotFoundException();
+      throw new NotFoundException('Brand not found');
     }
   }
 

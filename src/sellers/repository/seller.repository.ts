@@ -31,7 +31,7 @@ export class SellerRepository {
         where: { id },
       });
     } catch (error) {
-      throw new NotFoundException();
+      throw new NotFoundException('Seller not found');
     }
   }
 

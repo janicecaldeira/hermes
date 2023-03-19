@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content entity">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -36,9 +36,15 @@
 
 
 
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >ProductEntity</li>
+  <li>Classes</li>
+  <li >GetProductResponse</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,8 +62,10 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/common/database/entities/product.entity.ts</code>
+            <code>src/products/swagger/product.response.ts</code>
         </p>
+
+
 
 
 
@@ -81,6 +89,12 @@
                                 <a href="#brandId" >brandId</a>
                             </li>
                             <li>
+                                <a href="#createdAt" >createdAt</a>
+                            </li>
+                            <li>
+                                <a href="#deletedAt" >deletedAt</a>
+                            </li>
+                            <li>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
@@ -98,6 +112,9 @@
                             <li>
                                 <a href="#slug" >slug</a>
                             </li>
+                            <li>
+                                <a href="#updatedAt" >updatedAt</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -110,6 +127,7 @@
         </tbody>
     </table>
 </section>
+
 
             <section>
     
@@ -138,13 +156,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, brand &#x3D;&gt; brand.products, {nullable: false, eager: true})<br />
+                            @ApiProperty({description: &#x27;Marca associada ao produto.&#x27;, example: 1})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/common/database/entities/product.entity.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/products/swagger/product.response.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -173,13 +191,83 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;int&#x27;})<br />
+                            @ApiProperty({description: &#x27;ID da marca do produto.&#x27;, example: 1})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/common/database/entities/product.entity.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/products/swagger/product.response.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createdAt"></a>
+                    <span class="name">
+                        <span ><b>createdAt</b></span>
+                        <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({description: &#x27;Data de criação do produto.&#x27;, example: &#x27;2023-03-18T22:38:45.996Z&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/products/swagger/product.response.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deletedAt"></a>
+                    <span class="name">
+                        <span ><b>deletedAt</b></span>
+                        <a href="#deletedAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({description: &#x27;Data de exclusão do produto quando aplicável.&#x27;, example: undefined})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/products/swagger/product.response.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -208,13 +296,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @PrimaryGeneratedColumn({type: &#x27;int&#x27;})<br />
+                            @ApiProperty({description: &#x27;ID do produto.&#x27;, example: 1})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/common/database/entities/product.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/products/swagger/product.response.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -243,13 +331,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;varchar&#x27;, length: &#x27;50&#x27;, nullable: false})<br />
+                            @ApiProperty({description: &#x27;Nome do produto.&#x27;, example: &#x27;Tênis de corrida&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/common/database/entities/product.entity.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/products/swagger/product.response.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -278,13 +366,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;decimal&#x27;, precision: 10, scale: 2, default: 0})<br />
+                            @ApiProperty({description: &#x27;Preço do produto.&#x27;, example: &#x27;100.00&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/common/database/entities/product.entity.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/products/swagger/product.response.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -313,13 +401,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, seller &#x3D;&gt; seller.products, {nullable: false, eager: true})<br />
+                            @ApiProperty({description: &#x27;Vendedor associado ao produto.&#x27;, example: 2})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/common/database/entities/product.entity.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/products/swagger/product.response.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -348,13 +436,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;int&#x27;})<br />
+                            @ApiProperty({description: &#x27;ID do vendedor do produto.&#x27;, example: 2})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/common/database/entities/product.entity.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/products/swagger/product.response.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -383,13 +471,48 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;varchar&#x27;, length: &#x27;50&#x27;, nullable: false})<br />
+                            @ApiProperty({description: &#x27;Slug do produto.&#x27;, example: &#x27;tenis-de-corrida&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/common/database/entities/product.entity.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/products/swagger/product.response.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatedAt"></a>
+                    <span class="name">
+                        <span ><b>updatedAt</b></span>
+                        <a href="#updatedAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({description: &#x27;Data de atualização do produto.&#x27;, example: &#x27;2023-03-18T22:38:45.996Z&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/products/swagger/product.response.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -397,95 +520,138 @@
         </tbody>
     </table>
 </section>
+
+
+
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import slugify from &#x27;slugify&#x27;;
-import {
-  BeforeInsert,
-  BeforeUpdate,
-  Column,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  Unique,
-} from &#x27;typeorm&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
 
-import { BasicEntity } from &#x27;./basic.entity&#x27;;
-import { BrandEntity } from &#x27;./brand.entity&#x27;;
-import { SellerEntity } from &#x27;./seller.entity&#x27;;
+import { BrandEntity } from &#x27;@/common/database/entities/brand.entity&#x27;;
+import { SellerEntity } from &#x27;@/common/database/entities/seller.entity&#x27;;
 
-@Entity({
-  name: &#x27;product&#x27;,
-  synchronize: false,
-})
-@Unique([&#x27;name&#x27;, &#x27;slug&#x27;])
-export class ProductEntity extends BasicEntity {
-  @PrimaryGeneratedColumn({
-    type: &#x27;int&#x27;,
+export class GetProductResponse {
+  @ApiProperty({
+    description: &#x27;ID do produto.&#x27;,
+    example: 1,
   })
   id: number;
 
-  @Column({
-    type: &#x27;varchar&#x27;,
-    length: &#x27;50&#x27;,
-    nullable: false,
+  @ApiProperty({
+    description: &#x27;Nome do produto.&#x27;,
+    example: &#x27;Tênis de corrida&#x27;,
   })
   name: string;
 
-  @Column({
-    type: &#x27;varchar&#x27;,
-    length: &#x27;50&#x27;,
-    nullable: false,
+  @ApiProperty({
+    description: &#x27;Slug do produto.&#x27;,
+    example: &#x27;tenis-de-corrida&#x27;,
   })
   slug: string;
 
-  @Column({
-    type: &#x27;decimal&#x27;,
-    precision: 10,
-    scale: 2,
-    default: 0.0,
+  @ApiProperty({
+    description: &#x27;Preço do produto.&#x27;,
+    example: &#x27;100.00&#x27;,
   })
   price: number;
 
-  @Column({
-    type: &#x27;int&#x27;,
+  @ApiProperty({
+    description: &#x27;ID da marca do produto.&#x27;,
+    example: 1,
   })
   brandId: number;
 
-  @ManyToOne(() &#x3D;&gt; BrandEntity, (brand) &#x3D;&gt; brand.products, {
-    nullable: false,
-    eager: true,
+  @ApiProperty({
+    description: &#x27;Marca associada ao produto.&#x27;,
+    example: 1,
   })
   brand: BrandEntity;
 
-  @Column({
-    type: &#x27;int&#x27;,
+  @ApiProperty({
+    description: &#x27;ID do vendedor do produto.&#x27;,
+    example: 2,
   })
   sellerId: number;
 
-  @ManyToOne(() &#x3D;&gt; SellerEntity, (seller) &#x3D;&gt; seller.products, {
-    nullable: false,
-    eager: true,
+  @ApiProperty({
+    description: &#x27;Vendedor associado ao produto.&#x27;,
+    example: 2,
   })
   seller: SellerEntity;
 
-  @BeforeInsert()
-  @BeforeUpdate()
-  generateSlug() {
-    this.slug &#x3D; slugify(this.name, { lower: true, strict: true });
-  }
+  @ApiProperty({
+    description: &#x27;Data de criação do produto.&#x27;,
+    example: &#x27;2023-03-18T22:38:45.996Z&#x27;,
+  })
+  createdAt: Date;
+
+  @ApiProperty({
+    description: &#x27;Data de atualização do produto.&#x27;,
+    example: &#x27;2023-03-18T22:38:45.996Z&#x27;,
+  })
+  updatedAt: Date;
+
+  @ApiProperty({
+    description: &#x27;Data de exclusão do produto quando aplicável.&#x27;,
+    example: null,
+  })
+  deletedAt: Date | null;
+}
+
+export class Response404Dto {
+  @ApiProperty({
+    example: &#x27;404&#x27;,
+  })
+  statusCode: number;
+
+  @ApiProperty({
+    example: &#x27;Not found&#x27;,
+  })
+  message: string;
+}
+
+export class Response400Dto {
+  @ApiProperty({
+    example: &#x27;400&#x27;,
+  })
+  statusCode: number;
+
+  @ApiProperty({
+    example: &#x27;Name should not be empty&#x27;,
+  })
+  message: string;
+
+  @ApiProperty({
+    example: &#x27;Bad Request&#x27;,
+  })
+  error: string;
+}
+
+export class Response409Dto {
+  @ApiProperty({
+    example: &#x27;409&#x27;,
+  })
+  statusCode: number;
+
+  @ApiProperty({
+    example: &#x27;Name already exists&#x27;,
+  })
+  message: string;
+
+  @ApiProperty({
+    example: &#x27;Conflict&#x27;,
+  })
+  error: string;
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
 
 
 
@@ -520,8 +686,8 @@ export class ProductEntity extends BasicEntity {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
-            var COMPODOC_CURRENT_PAGE_URL = 'ProductEntity.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'GetProductResponse.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -32,9 +32,10 @@
                    <div class="content-data">
 
 <h1 id="hermes">hermes</h1>
+<p><img src="doc/hermes.jpg" alt="hermes" class="img-responsive"></p>
 <p>This name was chosen in reference to the Greek god Hermes, the god of commerce, also known as the protector of merchants.</p>
 <h2 id="before-starts">Before starts</h2>
-<p>Download and install <a href="https://nodejs.org/en/download/">Node 18.14.0 LTS</a></p>
+<p>Download and install <a href="https://nodejs.org/en/download/">Node LTS</a></p>
 <h2 id="installation">Installation</h2>
 <div><pre class="line-numbers"><code class="language-bash">npm install</code></pre></div><h2 id="configure-env--and-envtest">Configure .env  and .env.test</h2>
 <h3 id="example-env">example .env</h3>
@@ -83,11 +84,15 @@ installed in your machine.</p>
 <div><pre class="line-numbers"><code class="language-bash">npm run test:prepare</code></pre></div><p>You can now run your tests locally running:</p>
 <div><pre class="line-numbers"><code class="language-bash">npm run test</code></pre></div><p>or</p>
 <div><pre class="line-numbers"><code class="language-bash">npm run test:watch</code></pre></div><p>or</p>
-<div><pre class="line-numbers"><code class="language-bash">$ npm run test:cov
+<div><pre class="line-numbers"><code class="language-bash">npm run test:cov</code></pre></div><h2 id="documentation">Documentation</h2>
+<h3 id="see-swagger-documentation">See Swagger documentation</h3>
+<p>After application starts, open your browser and navigate to <a href="http://localhost:3000/api">http://localhost:3000/api</a></p>
+<h3 id="documentation-with-compodoc">Documentation with Compodoc</h3>
+<p>First run</p>
+<div><pre class="line-numbers"><code class="language-bash">npm run docs:build</code></pre></div><p>Now open your browser and navigate to <a href="http://localhost:8080/">http://localhost:8080/</a></p>
+<h2 id="license">License</h2>
+<p>Nest is <a href="LICENSE">MIT licensed</a>.</p>
 
-## License
-
-Nest is [MIT licensed](LICENSE).</code></pre></div>
 
 
 

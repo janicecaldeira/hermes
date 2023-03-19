@@ -1,14 +1,18 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
-import { FindOptions } from './../dto/find-options.dto';
 
 import { Factory } from 'rosie';
 import { Repository } from 'typeorm';
 
+import { BrandsService } from '@/brands/brands.service';
+import { BrandRepository } from '@/brands/repository/brand.repository';
 import { BrandEntity } from '@/common/database/entities/brand.entity';
 import { ProductEntity } from '@/common/database/entities/product.entity';
 import { SellerEntity } from '@/common/database/entities/seller.entity';
 import { TestHelper } from '@/helpers/test.helper';
+import { SellerRepository } from '@/sellers/repository/seller.repository';
+import { SellersService } from '@/sellers/sellers.service';
 import { CreateProductDto } from '../dto/create-product.dto';
+import { FindOptions } from './../dto/find-options.dto';
 import { ProductRepository } from './product.repository';
 
 describe('ProductRepository', () => {
@@ -16,6 +20,15 @@ describe('ProductRepository', () => {
 
   let repository: ProductRepository;
   let originalRepository: Repository<ProductEntity>;
+
+  let brandsService: BrandsService;
+  let brandRepository: BrandRepository;
+  let originalBrandRepository: Repository<BrandEntity>;
+
+  let sellersService: SellersService;
+  let sellerRepository: SellerRepository;
+  let originalSellerRepository: Repository<SellerEntity>;
+
   let brand: BrandEntity;
   let brandId: number;
   let seller: SellerEntity;
@@ -35,7 +48,20 @@ describe('ProductRepository', () => {
 
   beforeEach(() => {
     originalRepository = testHelper.getRepository(ProductEntity);
-    repository = new ProductRepository(originalRepository);
+    originalBrandRepository = testHelper.getRepository(BrandEntity);
+    originalSellerRepository = testHelper.getRepository(SellerEntity);
+
+    brandRepository = new BrandRepository(originalBrandRepository);
+    sellerRepository = new SellerRepository(originalSellerRepository);
+
+    brandsService = new BrandsService(brandRepository);
+    sellersService = new SellersService(sellerRepository);
+
+    repository = new ProductRepository(
+      originalRepository,
+      brandsService,
+      sellersService,
+    );
 
     return testHelper.cleanDatabase().then(async () => {
       brand = await Factory.build('brand', {}, { save: true });

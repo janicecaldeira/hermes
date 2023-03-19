@@ -6,21 +6,25 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptions } from './../dto/find-options.dto';
+import { SellersService } from './../../sellers/sellers.service';
 
 import { ILike, Repository } from 'typeorm';
 
+import { BrandsService } from '@/brands/brands.service';
 import { ProductEntity } from '@/common/database/entities/product.entity';
 import { CreateProductDto } from '@/products/dto/create-product.dto';
 import { UpdateProductDto } from '@/products/dto/update-product.dto';
 import { CreateProductSerializer } from '@/products/serializers/create-product.serializer';
 import { UpdateProductSerializer } from '@/products/serializers/update-product.serializer';
+import { FindOptions } from './../dto/find-options.dto';
 
 @Injectable()
 export class ProductRepository {
   constructor(
     @InjectRepository(ProductEntity)
     private repository: Repository<ProductEntity>,
+    private readonly brandsService: BrandsService,
+    private readonly sellersService: SellersService,
   ) {}
 
   async findAll(query: FindOptions) {
@@ -83,6 +87,10 @@ export class ProductRepository {
       if (await this.nameExists(data.name)) {
         throw new ConflictException('Name already exists');
       }
+
+      await this.brandsService.findOne(data.brandId);
+
+      await this.sellersService.findOne(data.sellerId);
 
       const newProduct = this.repository.create(data);
 

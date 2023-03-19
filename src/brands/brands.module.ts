@@ -8,5 +8,6 @@ import { BrandRepositoryModule } from './repository/brand.repository.module';
   imports: [BrandRepositoryModule],
   controllers: [BrandsController],
   providers: [BrandsService],
+  exports: [BrandsService],
 })
 export class BrandsModule {}

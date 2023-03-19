@@ -8,5 +8,6 @@ import { SellersService } from './sellers.service';
   imports: [SellerRepositoryModule],
   providers: [SellersService],
   controllers: [SellersController],
+  exports: [SellersService],
 })
 export class SellersModule {}

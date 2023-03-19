@@ -6,7 +6,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { SellersService } from './../../sellers/sellers.service';
 
 import { ILike, Repository } from 'typeorm';
 
@@ -16,6 +15,7 @@ import { CreateProductDto } from '@/products/dto/create-product.dto';
 import { UpdateProductDto } from '@/products/dto/update-product.dto';
 import { CreateProductSerializer } from '@/products/serializers/create-product.serializer';
 import { UpdateProductSerializer } from '@/products/serializers/update-product.serializer';
+import { SellersService } from '@/sellers/sellers.service';
 import { FindOptions } from './../dto/find-options.dto';
 
 @Injectable()

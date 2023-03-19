@@ -27,7 +27,7 @@ describe('BrandRepository', () => {
 
   beforeEach(() => {
     originalRepository = testHelper.getRepository(BrandEntity);
-    logger = createMock<Logger>()
+    logger = createMock<Logger>();
     repository = new BrandRepository(originalRepository, logger);
 
     return testHelper.cleanDatabase();

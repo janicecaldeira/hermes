@@ -21,7 +21,7 @@ export const GET_BY_ID_BRAND_OK_RESPONSE = {
 
 export const GET_BY_ID_BRAND_404_RESPONSE = {
   status: 404,
-  description: 'Brand not found',
+  description: 'Marca não encontrada.',
   type: Response404Dto,
 };
 

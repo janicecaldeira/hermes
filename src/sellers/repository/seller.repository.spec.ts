@@ -1,5 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 
+import { createMock } from '@golevelup/ts-jest';
+import { Logger } from 'nestjs-pino';
 import { Factory } from 'rosie';
 import { Repository } from 'typeorm';
 
@@ -11,6 +13,7 @@ describe('SellerRepository', () => {
   let repository: SellerRepository;
   let originalRepository: Repository<SellerEntity>;
   let testHelper: TestHelper;
+  let logger: Logger;
 
   beforeAll(() => {
     testHelper = TestHelper.getInstance();
@@ -24,7 +27,8 @@ describe('SellerRepository', () => {
 
   beforeEach(() => {
     originalRepository = testHelper.getRepository(SellerEntity);
-    repository = new SellerRepository(originalRepository);
+    logger = createMock<Logger>();
+    repository = new SellerRepository(originalRepository, logger);
 
     return testHelper.cleanDatabase();
   });

@@ -1,5 +1,7 @@
 import { ConflictException, NotFoundException } from '@nestjs/common';
 
+import { createMock } from '@golevelup/ts-jest';
+import { Logger } from 'nestjs-pino';
 import { Factory } from 'rosie';
 import { Repository } from 'typeorm';
 
@@ -34,6 +36,8 @@ describe('ProductRepository', () => {
   let seller: SellerEntity;
   let sellerId: number;
 
+  let logger: Logger;
+
   const findOptions: FindOptions = {};
 
   beforeAll(() => {
@@ -47,12 +51,14 @@ describe('ProductRepository', () => {
   });
 
   beforeEach(() => {
+    logger = createMock<Logger>();
+
     originalRepository = testHelper.getRepository(ProductEntity);
     originalBrandRepository = testHelper.getRepository(BrandEntity);
     originalSellerRepository = testHelper.getRepository(SellerEntity);
 
-    brandRepository = new BrandRepository(originalBrandRepository);
-    sellerRepository = new SellerRepository(originalSellerRepository);
+    brandRepository = new BrandRepository(originalBrandRepository, logger);
+    sellerRepository = new SellerRepository(originalSellerRepository, logger);
 
     brandsService = new BrandsService(brandRepository);
     sellersService = new SellersService(sellerRepository);
@@ -61,6 +67,7 @@ describe('ProductRepository', () => {
       originalRepository,
       brandsService,
       sellersService,
+      logger,
     );
 
     return testHelper.cleanDatabase().then(async () => {

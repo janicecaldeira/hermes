@@ -1,6 +1,7 @@
 import {
   ConflictException,
   HttpException,
+  Inject,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
@@ -16,6 +17,7 @@ import { UpdateProductDto } from '@/products/dto/update-product.dto';
 import { CreateProductSerializer } from '@/products/serializers/create-product.serializer';
 import { UpdateProductSerializer } from '@/products/serializers/update-product.serializer';
 import { SellersService } from '@/sellers/sellers.service';
+import { Logger } from 'nestjs-pino';
 import { FindOptions } from './../dto/find-options.dto';
 
 @Injectable()
@@ -25,6 +27,8 @@ export class ProductRepository {
     private repository: Repository<ProductEntity>,
     private readonly brandsService: BrandsService,
     private readonly sellersService: SellersService,
+    @Inject(Logger)
+    private readonly logger: Logger,
   ) {}
 
   async findAll(query: FindOptions) {
@@ -103,6 +107,7 @@ export class ProductRepository {
 
       return product;
     } catch (error) {
+      this.logger.error('Failed to create product', error);
       this.throwValidError(error);
     }
   }
@@ -130,6 +135,7 @@ export class ProductRepository {
       await this.repository.save(Object.assign(product, data));
       return { success: true };
     } catch (error) {
+      this.logger.error('Failed to update product', error);
       this.throwValidError(error);
     }
   }

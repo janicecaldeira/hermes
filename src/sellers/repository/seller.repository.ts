@@ -1,11 +1,13 @@
 import {
   HttpException,
+  Inject,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { Logger } from 'nestjs-pino';
 import { Repository } from 'typeorm';
 
 import { SellerEntity } from '@/common/database/entities/seller.entity';
@@ -19,6 +21,8 @@ export class SellerRepository {
   constructor(
     @InjectRepository(SellerEntity)
     private repository: Repository<SellerEntity>,
+    @Inject(Logger)
+    private readonly logger: Logger,
   ) {}
 
   async findAll() {
@@ -49,6 +53,7 @@ export class SellerRepository {
 
       return seller;
     } catch (error) {
+      this.logger.error('Failed to create seller', error);
       this.throwValidError(error);
     }
   }
@@ -76,6 +81,7 @@ export class SellerRepository {
         success: true,
       };
     } catch (error) {
+      this.logger.error('Failed to update seller', error);
       this.throwValidError(error);
     }
   }

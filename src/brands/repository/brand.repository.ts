@@ -1,15 +1,17 @@
-import { BrandEntity } from '@/common/database/entities/brand.entity';
 import {
   ConflictException,
   HttpException,
+  Inject,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { Logger } from 'nestjs-pino';
 import { Repository } from 'typeorm';
 
+import { BrandEntity } from '@/common/database/entities/brand.entity';
 import { CreateBrandDto } from '../dto/create-brand.dto';
 import { CreateBrandSerializer } from '../serializers/create-brand.serializer';
 import { UpdateBrandSerializer } from '../serializers/update-brand.serializer';
@@ -20,6 +22,8 @@ export class BrandRepository {
   constructor(
     @InjectRepository(BrandEntity)
     private repository: Repository<BrandEntity>,
+    @Inject(Logger)
+    private readonly logger: Logger,
   ) {}
 
   async findAll() {
@@ -54,6 +58,7 @@ export class BrandRepository {
 
       return brand;
     } catch (error) {
+      this.logger.error('Failed to create brand', error);
       this.throwValidError(error);
     }
   }
@@ -81,6 +86,7 @@ export class BrandRepository {
         success: true,
       };
     } catch (error) {
+      this.logger.error('Failed to update brand', error);
       this.throwValidError(error);
     }
   }

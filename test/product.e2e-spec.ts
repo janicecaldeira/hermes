@@ -79,7 +79,7 @@ describe('ProductController (e2e)', () => {
         .send(createProductDto)
         .expect(HttpStatus.CREATED);
 
-      const { id } = response.body;
+      const { id, slug } = response.body;
 
       await request(app.getHttpServer())
         .put(`${url}/${id}`)
@@ -87,7 +87,7 @@ describe('ProductController (e2e)', () => {
         .expect(HttpStatus.OK);
 
       return request(app.getHttpServer())
-        .get(`${url}/${id}`)
+        .get(`${url}/${slug}`)
         .expect(HttpStatus.OK);
     });
   });

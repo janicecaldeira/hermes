@@ -90,9 +90,9 @@ describe('ProductRepository', () => {
 
   describe('.findBySlug', () => {
     it('throws NotFoundException when slug not found', async () => {
-      await expect(repository.findBySlug('product-test-123456')).rejects.toThrow(
-        NotFoundException,
-      );
+      await expect(
+        repository.findBySlug('product-test-123456'),
+      ).rejects.toThrow(NotFoundException);
     });
 
     it('returns a product find by slug', async () => {

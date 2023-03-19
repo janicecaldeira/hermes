@@ -42,7 +42,6 @@ export const UPDATE_SELLER_OK_RESPONSE = {
   type: UpdateSellerSerializer,
 };
 
-
 export const UPDATE_SELLER_404_RESPONSE = {
   status: 404,
   description: 'Vendedor não encontrado.',
@@ -53,7 +52,7 @@ export const UPDATE_SELLER_400_RESPONSE = {
   status: 400,
   description: 'Nome do vendedor não deve estar vazio.',
   type: Response400Dto,
-}
+};
 
 export const DELETE_SELLER_OK_RESPONSE = {
   status: 200,

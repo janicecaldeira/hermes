@@ -46,8 +46,7 @@ export const CREATE_PRODUCT_OK_RESPONSE = {
 
 export const CREATE_PRODUCT_400_RESPONSE = {
   status: 400,
-  description:
-    'Nome do produto não deve estar vazio.',
+  description: 'Nome do produto não deve estar vazio.',
   type: Response400Dto,
 };
 

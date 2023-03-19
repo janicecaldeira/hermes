@@ -7,7 +7,13 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ApiBody, ApiOkResponse, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { SellerEntity } from '@/common/database/entities/seller.entity';
 import { CreateSellerDto } from './dto/create-seller.dto';

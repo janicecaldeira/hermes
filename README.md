@@ -118,7 +118,13 @@ or
 npm run test:cov
 ```
 
-## Documentation with Compodoc
+## Documentation
+
+### See Swagger documentation
+
+After application starts, open your browser and navigate to <http://localhost:3000/api>
+
+### Documentation with Compodoc
 
 First run
 

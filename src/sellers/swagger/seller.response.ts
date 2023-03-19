@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateSellerSerializer {
+export class GetSellerResponse {
   @ApiProperty({
     description: 'ID do vendedor.',
     example: 1,
@@ -30,4 +30,33 @@ export class CreateSellerSerializer {
     example: null,
   })
   deletedAt: Date | null;
+}
+
+export class Response404Dto {
+  @ApiProperty({
+    example: '404',
+  })
+  statusCode: number;
+
+  @ApiProperty({
+    example: 'Not found',
+  })
+  message: string;
+}
+
+export class Response400Dto {
+  @ApiProperty({
+    example: '400',
+  })
+  statusCode: number;
+
+  @ApiProperty({
+    example: 'Name should not be empty',
+  })
+  message: string;
+
+  @ApiProperty({
+    example: 'Bad Request',
+  })
+  error: string;
 }

@@ -12,6 +12,8 @@ import { ProductRepository } from './repository/product.repository';
 describe('ProductsService', () => {
   let service: ProductsService;
 
+  const slug = 'product-test';
+
   const id = 1;
 
   const createData: CreateProductDto = {
@@ -35,6 +37,7 @@ describe('ProductsService', () => {
           provide: getRepositoryToken(ProductRepository),
           useValue: {
             findAll: jest.fn().mockResolvedValue({}),
+            findBySlug: jest.fn().mockResolvedValue({}),
             findOne: jest.fn().mockResolvedValue({}),
             create: jest.fn().mockResolvedValue({}),
             update: jest.fn().mockResolvedValue({}),
@@ -56,6 +59,13 @@ describe('ProductsService', () => {
   describe('findAll', () => {
     it('should be defined', async () => {
       const response = service.findAll(findOptions);
+      expect(response).toBeDefined();
+    });
+  });
+
+  describe('findBySlug', () => {
+    it('should be defined', async () => {
+      const response = service.findBySlug(slug);
       expect(response).toBeDefined();
     });
   });

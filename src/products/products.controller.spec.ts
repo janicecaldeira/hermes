@@ -19,6 +19,7 @@ describe('ProductsController', () => {
   let productListMock: ProductEntity[];
   let firstProduct: ProductEntity;
   let firstId: string;
+  let slug: string;
 
   const createProductDto: CreateProductDto = {
     name: 'Test',
@@ -40,6 +41,7 @@ describe('ProductsController', () => {
 
     firstProduct = productListMock[0];
     firstId = String(firstProduct.id);
+    slug = firstProduct.slug;
   });
 
   beforeEach(async () => {
@@ -50,6 +52,7 @@ describe('ProductsController', () => {
           provide: ProductsService,
           useValue: {
             findAll: jest.fn().mockReturnValue(productListMock),
+            findBySlug: jest.fn().mockReturnValue(firstProduct),
             findOne: jest.fn().mockResolvedValue(firstProduct),
             create: jest.fn().mockResolvedValue(firstProduct),
             update: jest.fn().mockResolvedValue({ success: true }),
@@ -71,6 +74,13 @@ describe('ProductsController', () => {
     it('should return an array of products', async () => {
       const response = await controller.findAll(findOptions);
       expect(response).toEqual(productListMock);
+    });
+  });
+
+  describe('findBySlug', () => {
+    it('should return a product find by slug', async () => {
+      const response = await controller.findBySlug(slug);
+      expect(response).toEqual(firstProduct);
     });
   });
 

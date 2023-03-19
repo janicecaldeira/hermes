@@ -88,6 +88,25 @@ describe('ProductRepository', () => {
     });
   });
 
+  describe('.findBySlug', () => {
+    it('throws NotFoundException when slug not found', async () => {
+      await expect(repository.findBySlug('product-test-123456')).rejects.toThrow(
+        NotFoundException,
+      );
+    });
+
+    it('returns a product find by slug', async () => {
+      const product: ProductEntity = await Factory.build<ProductEntity>(
+        'product',
+        { brandId, sellerId },
+        { save: true },
+      );
+      await Factory.build('product', { brandId, sellerId }, { save: true });
+
+      expect(await repository.findBySlug(product.slug)).toEqual(product);
+    });
+  });
+
   describe('.create', () => {
     let properties: CreateProductDto;
     let product: any;

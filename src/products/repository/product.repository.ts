@@ -54,6 +54,17 @@ export class ProductRepository {
     return await qb.getMany();
   }
 
+  async findBySlug(slug: string) {
+    try {
+      return await this.repository.findOneOrFail({
+        where: { slug: slug },
+        loadRelationIds: true,
+      });
+    } catch (error) {
+      throw new NotFoundException();
+    }
+  }
+
   async findOne(id: number) {
     try {
       return await this.repository.findOneOrFail({

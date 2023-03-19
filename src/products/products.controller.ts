@@ -26,6 +26,11 @@ export class ProductsController {
     return this.productsService.findAll(query);
   }
 
+  @Get(':slug')
+  findBySlug(@Param('slug') slug: string): Promise<ProductEntity | undefined> {
+    return this.productsService.findBySlug(slug);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string): Promise<ProductEntity | undefined> {
     return this.productsService.findOne(+id);

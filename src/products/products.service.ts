@@ -16,6 +16,10 @@ export class ProductsService {
     return this.productRepository.findAll(query);
   }
 
+  findBySlug(slug: string): Promise<ProductEntity | undefined> {
+    return this.productRepository.findBySlug(slug);
+  }
+
   findOne(id: number): Promise<ProductEntity | undefined> {
     return this.productRepository.findOne(id);
   }

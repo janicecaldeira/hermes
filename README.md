@@ -4,6 +4,20 @@
 
 This name was chosen in reference to the Greek god Hermes, the god of commerce, also known as the protector of merchants.
 
+## How this API works
+
+Each product has a brand and a seller, which must be previously registered, so that when creating the product these data are informed (brand ID and seller ID).
+
+Once created, the searches for products are available with some filters: "name", "brand", "seller" and "price range" that is defined by "priceStart" and "priceEnd".
+
+You can check all the endpoints of this application easily in the documentation section, but the main routes are
+
+- Create a brand
+- Create a seller
+- Create a product
+- Search for all products (or filtering by name, brand, seller or price range)
+- Show product details (by slug)
+
 ## Before starts
 
 Download and install [Node LTS](https://nodejs.org/en/download/)
